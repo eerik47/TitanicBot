@@ -186,7 +186,7 @@ var reqPost = https.request(options, function (res)
         }
         else
         {
-            session.userData.AMLresult = "Gratuluji, na " + global.ScoredProbabilities*100 + "% přežijete katastrofu na Titanicu!";
+            session.userData.AMLresult = "Gratuluji, na " + global.ScoredProbabilities*100 + "% přežiješ katastrofu na Titanicu!";
         }
 
 
