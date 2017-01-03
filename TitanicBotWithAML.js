@@ -1,3 +1,4 @@
+
 var myAppId = process.env.MY_APP_ID || "Missing your app ID";
 var myAppSecret = process.env.MY_APP_SECRET || "Missing your app secret";
 
@@ -23,10 +24,6 @@ var connector = new builder.ChatConnector
 });
 
 var bot = new builder.UniversalBot(connector); 
-//var startDialog;
-//startDialog = 0;
-//var sleep = require('sleep');
-//sleep.sleep(1);
  
 
 //Root Dialog
@@ -192,7 +189,7 @@ var reqPost = https.request(options, function (res)
         }
         else
         {
-            session.userData.AMLresult = "Gratuluji, na " + global.ScoredProbabilities*100 + "% přežijete katastrofu na Titanicu!";
+            session.userData.AMLresult = "Gratuluji, na " + global.ScoredProbabilities*100 + "% přežiješ katastrofu na Titanicu!";
         }
 
 
@@ -328,8 +325,6 @@ var data = {
 return data;
 };
  
-						
- 
 
 function send404Reponse(response) {
 response.writeHead(404, {"Context-Type": "text/plain"});
@@ -345,3 +340,5 @@ fs.createReadStream("./index.html").pipe(response);
 send404Reponse(response);
 }
 };
+ 
+ 
