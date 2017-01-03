@@ -182,7 +182,7 @@ var reqPost = https.request(options, function (res)
         
         if (global.ScoredLabels == 0)
         {
-            session.userData.AMLresult = "Je mi líto, bohužel nepřežiješ!";   
+            session.userData.AMLresult = "Je mi líto, bohužel nepřežiješ! (Pravděpodobnost přežití: " + global.ScoredProbabilities*100 + "%)" ;   
         }
         else
         {
@@ -191,10 +191,6 @@ var reqPost = https.request(options, function (res)
 
 
         session.send(session.userData.AMLresult);
-
-        session.send(
-                   "(ScoredProbabilities: " + global.ScoredProbabilities*100 + "%)"
-                   );
 
 
  /*       
@@ -321,9 +317,7 @@ var data = {
 }
 return data;
 };
- 
-						
- 
+  
 
 function send404Reponse(response) {
 response.writeHead(404, {"Context-Type": "text/plain"});
@@ -340,4 +334,4 @@ send404Reponse(response);
 }
 };
  
- 
+
