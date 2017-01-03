@@ -1,3 +1,7 @@
+var myAppId = process.env.MY_APP_ID || "Missing your app ID";
+var myAppSecret = process.env.MY_APP_SECRET || "Missing your app secret";
+
+
 var builder = require('botbuilder');
 var restify = require('restify');
 var http = require("http");
@@ -133,7 +137,11 @@ var dataString = JSON.stringify(mydata);
 var host = "asiasoutheast.services.azureml.net";
 var path = "/workspaces/1dbb620c1fc34234bc51b22db6574502/services/a2db1e53ccff4666b0a8c45077d49eea/execute?api-version=2.0&details=true";
 var method = "POST";
-var api_key = process.env.AMLAPIKEY;
+
+// pro deployment bota do GitHubu
+//var api_key = process.env.AMLAPIKEY;//"JqqbhwZcqk8fIOCR0aYVvV5XGdhN4zeiIkA3MssfUQOjGjmYOUbrblnUpOYIrDHkbvqSanu2wPCIpee9gEWNog==";
+var api_key = "JqqbhwZcqk8fIOCR0aYVvV5XGdhN4zeiIkA3MssfUQOjGjmYOUbrblnUpOYIrDHkbvqSanu2wPCIpee9gEWNog==";
+
 var headers = {'Content-Type':'application/json', 'Authorization':'Bearer ' + api_key};
  
 var options = {
@@ -327,4 +335,3 @@ send404Reponse(response);
 }
 };
  
- 
