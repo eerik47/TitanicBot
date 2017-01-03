@@ -17,21 +17,20 @@ global.ScoredProbabilities = 0;
 //var connector = new builder.ChatConnector();
 
 // deployment to Azure
-var connector = new builder.ChatConnector
-({
+var connector = new builder.ChatConnector({
     appId: process.env.MY_APP_ID,
     appPassword: process.env.MY_APP_SECRET
 });
 
 var bot = new builder.UniversalBot(connector); 
- 
+
 
 //Root Dialog
 bot.dialog('/', [
     function (session) 
     {
         session.send('Ahoj, jsem "inteligentní" bot a umím predikovat zda přežiješ na Titanicu!');
-        builder.Prompts.choice(session, "Chceš si mne vyzkoušet?", "Ano|Ne");
+        builder.Prompts.choice(session, "Chceš si mne vyzkoušet?", ["Ano", "Ne"], {listStyle: builder.ListStyle.button});
      },
     
     function (session, results) 
@@ -141,9 +140,7 @@ var dataString = JSON.stringify(mydata);
 var host = "asiasoutheast.services.azureml.net";
 var path = "/workspaces/1dbb620c1fc34234bc51b22db6574502/services/a2db1e53ccff4666b0a8c45077d49eea/execute?api-version=2.0&details=true";
 var method = "POST";
-
-//var api_key = process.env.AMLAPIKEY;
-var api_key = "JqqbhwZcqk8fIOCR0aYVvV5XGdhN4zeiIkA3MssfUQOjGjmYOUbrblnUpOYIrDHkbvqSanu2wPCIpee9gEWNog==";
+var api_key = process.env.AMLAPIKEY;
 
 var headers = {'Content-Type':'application/json', 'Authorization':'Bearer ' + api_key};
  
@@ -189,7 +186,7 @@ var reqPost = https.request(options, function (res)
         }
         else
         {
-            session.userData.AMLresult = "Gratuluji, na " + global.ScoredProbabilities*100 + "% přežiješ katastrofu na Titanicu!";
+            session.userData.AMLresult = "Gratuluji, na " + global.ScoredProbabilities*100 + "% přežijete katastrofu na Titanicu!";
         }
 
 
@@ -245,7 +242,7 @@ console.error(e);
 bot.dialog('/askMan', [
     function (session) {
         //Prompt for user input
-       builder.Prompts.choice(session, "Jaké je tvoje pohlaví?", "Muž|Žena");
+       builder.Prompts.choice(session, "Jaké je tvoje pohlaví?", ["Muž", "Žena"], {listStyle: builder.ListStyle.button});
     }
 
 ]);
@@ -274,21 +271,21 @@ bot.dialog('/askParent', [
 bot.dialog('/askClass', [
     function (session) {
         //Prompt for user input
-        builder.Prompts.choice(session, "Jakou třídou pojedeš?", "1. třída|2. třída|3. třída");
+        builder.Prompts.choice(session, "Jakou třídou pojedeš?", ["1. třída", "2. třída", "3. třída"], {listStyle: builder.ListStyle.button});
     }
 ]); 
 
 bot.dialog('/askTicket', [
     function (session) {
         //Prompt for user input
-        builder.Prompts.number(session, "Kolik USD stály lístky na loď?");
+        builder.Prompts.number(session, "Kolik USD stály lístky na loď (v rozmezí $0-$512)?");
     }
 ]); 
 
 bot.dialog('/askPort', [
     function (session) {
         //Prompt for user input
-        builder.Prompts.choice(session, "Z jakého přístavu vyplouváš?", "Cherbourg|Queenstown|Southampton");
+        builder.Prompts.choice(session, "Z jakého přístavu vyplouváš?", ["Cherbourg", "Queenstown", "Southampton"], {listStyle: builder.ListStyle.button});
     }
 ]); 
 
@@ -324,6 +321,8 @@ var data = {
 }
 return data;
 };
+ 
+						
  
 
 function send404Reponse(response) {
