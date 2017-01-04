@@ -180,7 +180,8 @@ var reqPost = https.request(options, function (res)
         console.log("ScoredLabels: " + global.ScoredLabels);
         console.log("ScoredProbabilities: " + global.ScoredProbabilities);
         
-        if (global.ScoredLabels == 0)
+        // if (global.ScoredLabels == 0)
+        if (global.ScoredProbabilities < 0.5)
         {
             session.userData.AMLresult = "Je mi líto, bohužel nepřežiješ! (Pravděpodobnost přežití: " + global.ScoredProbabilities*100 + "%)" ;   
         }
