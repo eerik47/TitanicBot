@@ -289,6 +289,12 @@ bot.dialog('/askPort', [
 
 
 var server = restify.createServer();
+
+server.get('/', restify.serveStatic({
+    directory: __dirname,
+    default: '/index.html'
+}));
+
 server.listen(process.env.port || process.env.PORT || 3978, function () {
    console.log('%s listening to %s', server.name, server.url); 
 });
