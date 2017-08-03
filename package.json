@@ -9,7 +9,7 @@
    "author": "EEC",
    "license": "MIT",
   "dependencies": {
-    "botbuilder": "^3.8.2",
+    "botbuilder": "^3.9.0",
     "restify": "^4.3.0"
   }
 } 
